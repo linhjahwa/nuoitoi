@@ -1,0 +1,1255 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuôi Tôi - Minh Bạch 100% (Thật Đấy!)</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="HÃY NUÔI TÔI! Tôi hứa sao kê đầy đủ mỗi ngày, minh bạch 300%, không giấu giếm. Từ tô phở đến ly trà sữa đều được báo cáo!">
+    <meta name="keywords" content="nuôi tôi, sao kê, minh bạch, từ thiện, donate, châu tinh trì, hài hước">
+    <meta name="author" content="Nuôi Tôi">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nuoi-toi.com/">
+    <meta property="og:title" content="Nuôi Tôi - Minh Bạch 100% (Thật Đấy!)">
+    <meta property="og:description" content="HÃY NUÔI TÔI! Tôi hứa sao kê đầy đủ mỗi ngày, minh bạch 300%, không giấu giếm. Website hài hước về văn hóa sao kê tại Việt Nam! 😂">
+    <meta property="og:image" content="https://nuoi-toi.com/images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="vi_VN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://nuoi-toi.com/">
+    <meta name="twitter:title" content="Nuôi Tôi - Minh Bạch 100% (Thật Đấy!)">
+    <meta name="twitter:description" content="HÃY NUÔI TÔI! Tôi hứa sao kê đầy đủ mỗi ngày, minh bạch 300%! 😂">
+    <meta name="twitter:image" content="https://nuoi-toi.com/images/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://nuoi-toi.com/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://nuoi-toi.com/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://nuoi-toi.com/images/apple-touch-icon.png">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+    
+    <style>
+        /* Donation Counter Styles */
+        .donation-counter {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid #ffd700;
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0%, 100% { border-color: #ffd700; }
+            50% { border-color: #ff69b4; }
+        }
+        
+        .counter-content {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .counter-column {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .counter-column.income {
+            border-right: 2px solid #ddd;
+            padding-right: 20px;
+        }
+        
+        .counter-column.expense {
+            padding-left: 20px;
+        }
+        
+        .counter-icon {
+            font-size: 3em;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .counter-details {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .expense-summary {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .expense-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .expense-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1em;
+        }
+        
+        .expense-row.spent {
+            color: #e74c3c;
+        }
+        
+        .expense-label {
+            font-size: 1em;
+            color: #666;
+        }
+        
+        .expense-value {
+            font-size: 1.1em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .expense-summary {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .expense-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .expense-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1em;
+        }
+        
+        .expense-row.spent {
+            color: #e74c3c;
+        }
+        
+        .expense-label {
+            font-size: 1em;
+            color: #666;
+        }
+        
+        .expense-value {
+            font-size: 1.1em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .counter-label {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .counter-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .counter-subtitle {
+            font-size: 1em;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .counter-progress {
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #52c234 0%, #2ecc71 50%, #ffd700 100%);
+            border-radius: 15px;
+            transition: width 1s ease;
+            width: 0%;
+            box-shadow: 0 0 10px rgba(82, 194, 52, 0.5);
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .counter-content {
+                flex-direction: column;
+            }
+            
+            .counter-column.income {
+                border-right: none;
+                border-bottom: 2px solid #ddd;
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+            
+            .counter-column.expense {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+            
+            .counter-icon {
+                font-size: 2em;
+            }
+            
+            .counter-amount {
+                font-size: 2em;
+            }
+            
+            .counter-label {
+                font-size: 1em;
+            }
+        }
+        
+        /* Expense Section Styles */
+        .expense-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .expense-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .expense-cards-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+        
+        .expense-cards-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .expense-cards-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .expense-cards-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        
+        .expense-cards-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .expense-card {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin-right: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            vertical-align: top;
+        }
+        
+        .expense-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .expense-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .expense-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+            padding: 10px;
+            font-size: 0.9em;
+            font-weight: bold;
+            white-space: normal;
+            text-align: center;
+        }
+        
+        /* Popup Modal Styles */
+        .expense-popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+        
+        .expense-popup.show {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .expense-popup-content {
+            position: relative;
+            background-color: #fefefe;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .expense-popup-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+        
+        .expense-popup-close:hover {
+            color: #e74c3c;
+        }
+        
+        .expense-popup-image {
+            width: 100%;
+            max-width: 400px;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 15px;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .expense-popup-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .expense-popup-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .expense-popup-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .expense-popup-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+            
+            .expense-popup-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="lang-toggle" onclick="toggleLanguageMenu()" aria-label="Change Language">
+            🌐
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-btn active" data-lang="vi" onclick="setLanguage('vi')">🇻🇳 Tiếng Việt</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">🇬🇧 English</button>
+            <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+            <button class="lang-btn" data-lang="da" onclick="setLanguage('da')">🇩🇰 Dansk</button>
+            <button class="lang-btn" data-lang="ja" onclick="setLanguage('ja')">🇯🇵 日本語</button>
+            <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">🇨🇳 中文</button>
+            <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Nuôi Tôi Logo">
+            </div>
+            <h1>🌱 NUÔI TÔI 🌱</h1>
+            <div class="slogan">
+<strong>HÃY NUÔI TÔI</strong>.<br>
+                Tôi hứa sao kê đầy đủ!" 💯
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Donation Counter -->
+            <div class="donation-counter">
+                <div class="counter-content">
+                    <!-- Cột trái: Thu -->
+                    <div class="counter-column income">
+                        <div class="counter-icon">💰</div>
+                        <div class="counter-details">
+                            <div class="counter-label" data-i18n="totalReceived">Tổng Đã Nhận Được</div>
+                            <div class="counter-amount" id="totalAmount">
+                                <span class="loading-spinner">⏳</span>
+                                <span class="amount-value" style="display: none;">0 đ</span>
+                            </div>
+                            <div class="counter-subtitle"><span data-i18n="from">Từ</span> <span id="transactionCount">0</span> <span data-i18n="donations">lượt donate</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cột phải: Chi tiêu -->
+                    <div class="counter-column expense">
+                        <div class="counter-icon">💸</div>
+                        <div class="expense-summary">
+                            <div class="expense-row">
+                                <span class="expense-label" data-i18n="incomeLabel">Thu:</span>
+                                <span class="expense-value" id="incomeAmount">0 đ</span>
+                            </div>
+                            <div class="expense-row spent">
+                                <span class="expense-label" data-i18n="spentLabel">Chi:</span>
+                                <span class="expense-value" id="spentAmount">0 đ</span>
+                            </div>
+                            <div class="expense-row">
+                                <span class="expense-label" data-i18n="remainingLabel">Còn lại:</span>
+                                <span class="expense-value" id="remainingAmount">0 đ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="counter-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text"><span data-i18n="monthlyGoal">Mục tiêu tháng này:</span> <span id="monthlyGoal">10,000,000</span> <span id="currencySymbol">đ</span></div>
+                </div>
+            </div>
+
+            <!-- Expense Section -->
+            <div class="expense-section">
+                <div class="expense-title">
+                    <span>💸</span>
+                    <span data-i18n="expenseTitle">Chi Tiêu</span>
+                </div>
+                <div class="expense-cards-container">
+                    <div class="expense-card" onclick="openExpensePopup(0)">
+                        <img src="./images/monan1.jpg" alt="Món ăn cho tâm hồn">
+                        <div class="expense-card-overlay" data-i18n="expense1Title">Món ăn cho tâm hồn</div>
+                    </div>
+                    <!-- Add more expense cards here in the future -->
+                </div>
+            </div>
+
+            <!-- Expense Popup Modal -->
+            <div id="expensePopup" class="expense-popup" onclick="closeExpensePopup(event)">
+                <div class="expense-popup-content" onclick="event.stopPropagation()">
+                    <span class="expense-popup-close" onclick="closeExpensePopup()">&times;</span>
+                    <img id="popupImage" class="expense-popup-image" src="" alt="">
+                    <h3 id="popupTitle" class="expense-popup-title"></h3>
+                    <a id="popupLink" class="expense-popup-link" href="" target="_blank" data-i18n="expenseViewDetails">Xem Chi Tiết</a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 data-i18n="whyFeedMe">🎯 Tại Sao Nên Nuôi Tôi?</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 data-i18n="featureRealtime">Sao Kê Realtime</h3>
+                        <p data-i18n="featureRealtimeDesc">Cập nhật từng giây! Còn nhanh hơn cả tốc độ bạn chuyển tiền!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3 data-i18n="featureTransparent">Minh Bạch 300%</h3>
+                        <p data-i18n="featureTransparentDesc">Hơn cả 100%! Tôi còn báo cáo cả việc mua ly trà sữa!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💸</div>
+                        <h3 data-i18n="featureReasonable">Chi Tiêu Hợp Lý</h3>
+                        <p data-i18n="featureReasonableDesc">Không mua xe hơi, nhà cửa. Chỉ ăn cơm với mì tôm thôi!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 data-i18n="featureTracking">App Tracking</h3>
+                        <p data-i18n="featureTrackingDesc">Theo dõi 24/7 tôi ăn gì, uống gì, đi đâu. Như "Big Brother" vậy!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="funny-notes">
+                <h3 data-i18n="commitmentTitle">🎪 Cam Kết Vàng Của Tôi:</h3>
+                <ul>
+                    <li data-i18n="commitment1"><strong>Sao kê mỗi ngày:</strong> Cập nhật lúc 6h sáng, đều như vắt tranh! (Kể cả Chủ Nhật & Lễ)</li>
+                    <li data-i18n="commitment2"><strong>Không giấu giếm:</strong> Từ tô phở 50k đến hộp sữa chua 8k đều được ghi chép tỉ mỉ!</li>
+                    <li data-i18n="commitment3"><strong>Có hóa đơn chứng từ:</strong> Chụp hình bill, quét mã vạch, lưu biên lai đầy đủ!</li>
+                    <li data-i18n="commitment4"><strong>Video unboxing:</strong> Mở từng gói mì tôm live trên Facebook cho anh chị xem!</li>
+                    <li data-i18n="commitment5"><strong>Hotline 24/7:</strong> Gọi hỏi tôi ăn gì bất cứ lúc nào, kể cả 3h sáng!</li>
+                    <li data-i18n="commitment6"><strong>Không block:</strong> Hỏi khó đến mấy cũng trả lời, không "đã xem" rồi im lặng!</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2 data-i18n="compareTitle">💰 So Sánh Với "Người Khác"</h2>
+                <div class="funny-notes" style="background: #ffe6e6; border-left-color: #ff4757;">
+                    <h3 style="color: #ff4757;" data-i18n="othersTitle">❌ Người Khác:</h3>
+                    <ul>
+                        <li style="color: #e74c3c;" data-i18n="others1">Sao kê sau 3 năm (hoặc không bao giờ)</li>
+                        <li style="color: #e74c3c;" data-i18n="others2">File Excel blur mờ như ảnh ma</li>
+                        <li style="color: #e74c3c;" data-i18n="others3">Số liệu "làm tròn" theo kiểu 1 + 1 = 3</li>
+                        <li style="color: #e74c3c;" data-i18n="others4">Block người hỏi nhanh như chớp</li>
+                    </ul>
+                </div>
+                <div class="funny-notes" style="background: #e6ffe6; border-left-color: #4CAF50; margin-top: 15px;">
+                    <h3 style="color: #4CAF50;" data-i18n="meTitle">✅ Nuôi Tôi:</h3>
+                    <ul>
+                        <li style="color: #27ae60;" data-i18n="me1">Sao kê trước khi tiêu (để anh chị duyệt)</li>
+                        <li style="color: #27ae60;" data-i18n="me2">File Excel 4K Ultra HD, có chữ ký điện tử</li>
+                        <li style="color: #27ae60;" data-i18n="me3">Số liệu chính xác đến từng đồng</li>
+                        <li style="color: #27ae60;" data-i18n="me4">Trả lời inbox nhanh hơn cả chatbot</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <h2 style="color: #c0392b; margin-bottom: 10px;" data-i18n="donateTitle">💳 DONATE NGAY ĐI, NẾ U BẠN ĐANG CƯỜI!</h2>
+                <p style="font-size: 1.2em; color: #555; margin-bottom: 10px;" data-i18n="donateDesc">
+                    Quét mã QR này để nuôi tôi (và nhận bản sao kê ngay lập tức!) hoặc vào link này <a href="https://buymeacoffee.com/nuoitoi.com" target="_blank">https://buymeacoffee.com/nuoitoi.com</a>
+                </p>
+                <div class="qr-code">
+                    <a href="https://buymeacoffee.com/nuoitoi.com" target="_blank"><img style="object-fit: cover;" src="./Images/z7356989429642_4a53c6d04d11f7741f6911cb852d4c8b.jpg" alt="QR Code Donation"></a>
+                </div>
+                <p style="font-size: 1.1em; color: #e74c3c; font-weight: bold;" class="pulse" data-i18n="donateAuto">
+                    ⚡ Chuyển xong là có mail tự động! ⚡
+                </p>
+                <button class="cta-button" data-i18n="donateButton">
+                    🎁 TÔI MUỐN NUÔI BẠN!
+                </button>
+            </div>
+
+            <div class="section">
+                <h2 data-i18n="budgetTitle">📈 Tôi Sẽ Dùng Tiền Vào Đâu?</h2>
+                <div class="funny-notes" style="background: #f0f8ff; border-left-color: #3498db;">
+                    <ul>
+                        <li data-i18n="budget1"><strong>40%</strong> - Ăn uống (Cơm, mì tôm, trứng, rau. KHÔNG có tôm hùm!)</li>
+                        <li data-i18n="budget2"><strong>20%</strong> - Điện nước internet (Để sao kê cho anh chị)</li>
+                        <li data-i18n="budget3"><strong>15%</strong> - Thuê nhà (Phòng trọ 15m², không phải penthouse)</li>
+                        <li data-i18n="budget4"><strong>10%</strong> - Y tế (Thuốc cảm, vitamin C, khẩu trang)</li>
+                        <li data-i18n="budget5"><strong>10%</strong> - Học tập nâng cao (Sách, khóa học online để sao kê tốt hơn)</li>
+                        <li data-i18n="budget6"><strong>5%</strong> - Giải trí (Netflix? Không! Chỉ Youtube miễn phí thôi!)</li>
+                    </ul>
+                </div>
+                <p style="text-align: center; margin-top: 20px; font-weight: bold; color: #e74c3c; font-size: 1.1em;" data-i18n="budgetChart">
+                    📈 Biểu đồ chi tiết cập nhật hàng tuần trên website!
+    
+                </p>
+                
+                <!-- Running Button Game -->
+                <div style="position: relative; margin-top: 40px; min-height: 200px; padding: 20px; background: #f8f9fa; border-radius: 15px; overflow: hidden;">
+                    <div id="button-container" style="position: relative; width: 100%; height: 150px;">
+                        <!-- Dragon attached to button -->
+                        <img id="dragon-cursor" 
+                             src="./images/rongden.png" 
+                             alt="Dragon" 
+                             style="position: absolute; width: 50px; height: 50px; pointer-events: none; z-index: 10; display: none;">
+                        
+                        <a id="running-button" 
+                           href="https://docs.google.com/spreadsheets/d/1iTaFoNHLt_OpEW_yf3sjXea-qDznZ0UjZQzUtQXS-zY/edit?usp=sharing" 
+                           target="_blank"
+                           data-i18n="statementButton"
+                           style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.1em; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; white-space: nowrap; min-width: 180px; text-align: center;">
+                            📊 Sao kê
+                        </a>
+                    </div>
+                </div>
+                
+                <style>
+                    #running-button.running {
+                        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+                    }
+                    
+                    #running-button.caught {
+                        background: linear-gradient(135deg, #52c234 0%, #2ecc71 100%);
+                        cursor: pointer !important;
+                        animation: tada 1s;
+                    }
+                    
+                    @keyframes tada {
+                        0% { transform: translate(-50%, -50%) scale(1); }
+                        10%, 20% { transform: translate(-50%, -50%) scale(0.9) rotate(-3deg); }
+                        30%, 50%, 70%, 90% { transform: translate(-50%, -50%) scale(1.1) rotate(3deg); }
+                        40%, 60%, 80% { transform: translate(-50%, -50%) scale(1.1) rotate(-3deg); }
+                        100% { transform: translate(-50%, -50%) scale(1) rotate(0); }
+                    }
+                    
+                    @media (max-width: 768px) {
+                        #running-button {
+                            position: relative !important;
+                            left: 0 !important;
+                            top: 0 !important;
+                            transform: none !important;
+                            display: block !important;
+                            margin: 0 auto !important;
+                            width: fit-content !important;
+                            padding: 15px 30px !important;
+                        }
+                        
+                        #dragon-cursor {
+                            display: none !important;
+                        }
+                        
+                        #button-container {
+                            height: auto !important;
+                            text-align: center !important;
+                        }
+                    }
+                </style>
+                
+                <script>
+                    (function() {
+                        const button = document.getElementById('running-button');
+                        const container = document.getElementById('button-container');
+                        const isMobile = window.innerWidth <= 768;
+                        
+                        let isRunning = true;
+                        let timeLeft = 60;
+                        let isMoving = false;
+                        
+                        // Chỉ chạy trên desktop
+                        if (!isMobile) {
+                            const dragon = document.getElementById('dragon-cursor');
+                            
+                            // Function to update dragon position to match button
+                            function updateDragonPosition() {
+                                const buttonRect = button.getBoundingClientRect();
+                                const containerRect = container.getBoundingClientRect();
+                                
+                                // Position dragon to the right of the button
+                                const dragonX = buttonRect.left - containerRect.left + buttonRect.width + 10;
+                                const dragonY = buttonRect.top - containerRect.top + buttonRect.height / 2 - 25;
+                                
+                                dragon.style.left = dragonX + 'px';
+                                dragon.style.top = dragonY + 'px';
+                                dragon.style.transform = 'none';
+                            }
+                            
+                            // Continuously update dragon position to follow button during transitions
+                            setInterval(() => {
+                                if (isRunning && dragon.style.display === 'block') {
+                                    updateDragonPosition();
+                                }
+                            }, 16); // ~60fps
+                            
+                            // Countdown timer (silent)
+                            const countdown = setInterval(() => {
+                                timeLeft--;
+                                
+                                if (timeLeft <= 0) {
+                                    clearInterval(countdown);
+                                    isRunning = false;
+                                    button.classList.remove('running');
+                                    button.classList.add('caught');
+                                    button.style.cursor = 'pointer';
+                                    dragon.style.display = 'none';
+                                    const currentLang = localStorage.getItem('language') || 'vi';
+                                    const caughtText = translations[currentLang]?.statementCaught || '✅ Đã bắt được! Click để xem!';
+                                    button.textContent = caughtText;
+                                }
+                            }, 1000);
+                            
+                            // Track mouse position continuously
+                            let mouseX = 0, mouseY = 0;
+                            container.addEventListener('mousemove', function(e) {
+                                const rect = container.getBoundingClientRect();
+                                mouseX = e.clientX - rect.left;
+                                mouseY = e.clientY - rect.top;
+                            });
+                            
+                            // Mouse move handler
+                            button.addEventListener('mouseenter', function(e) {
+                                if (!isRunning || isMoving) return;
+                                
+                                // Show dragon on first hover
+                                dragon.style.display = 'block';
+                                updateDragonPosition();
+                                
+                                isMoving = true;
+                                button.classList.add('running');
+                                
+                                const containerRect = container.getBoundingClientRect();
+                                const buttonRect = button.getBoundingClientRect();
+                                
+                                // Calculate safe boundaries
+                                const maxX = containerRect.width - buttonRect.width;
+                                const maxY = containerRect.height - buttonRect.height;
+                                
+                                // Random position FAR away from mouse
+                                let newX, newY;
+                                let attempts = 0;
+                                const minDistance = 250; // Khoảng cách tối thiểu từ chuột
+                                
+                                do {
+                                    newX = Math.random() * maxX;
+                                    newY = Math.random() * maxY;
+                                    
+                                    // Tính khoảng cách từ vị trí mới đến vị trí chuột hiện tại
+                                    const distanceToMouse = Math.sqrt(
+                                        Math.pow(newX + buttonRect.width/2 - mouseX, 2) + 
+                                        Math.pow(newY + buttonRect.height/2 - mouseY, 2)
+                                    );
+                                    
+                                    attempts++;
+                                    
+                                    // Chỉ chấp nhận nếu đủ xa chuột
+                                    if (distanceToMouse >= minDistance) break;
+                                    
+                                } while (attempts < 30);
+                                
+                                // Nếu không tìm được vị trí đủ xa, đẩy về góc đối diện
+                                if (attempts >= 30) {
+                                    newX = mouseX > containerRect.width / 2 ? 0 : maxX;
+                                    newY = mouseY > containerRect.height / 2 ? 0 : maxY;
+                                }
+                                
+                                button.style.left = newX + 'px';
+                                button.style.top = newY + 'px';
+                                button.style.transform = 'none';
+                                
+                                // Update dragon position after button moves
+                                updateDragonPosition();
+                                
+                                setTimeout(() => {
+                                    isMoving = false;
+                                }, 300);
+                            });
+                            
+                            // Prevent click and opening link when running
+                            button.addEventListener('click', function(e) {
+                                if (isRunning) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    button.classList.add('running');
+                                    return false;
+                                }
+                            });
+                            
+                            // Also prevent default on mousedown
+                            button.addEventListener('mousedown', function(e) {
+                                if (isRunning) {
+                                    e.preventDefault();
+                                    return false;
+                                }
+                            });
+                        }
+                    })();
+                </script>
+            </div>
+
+            <div class="section">
+                <h2 data-i18n="videoTitle">🎬 "Tôi Nuôi Cô!" - Châu Tinh Trì</h2>
+                <div class="funny-notes" style="background: #fff0f5; border-left-color: #ff69b4; text-align: center;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 10px;">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                            src="https://www.youtube.com/embed/aBAq6NWlEAk" 
+                            title="Tôi nuôi cô - Châu Tinh Trì" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 data-i18n="messageTitle">🎤 Lời Nhắn Từ Trái Tim</h2>
+                <div class="funny-notes" style="background: #fff0f5; border-left-color: #ff69b4;">
+                    <p style="font-size: 1.1em; line-height: 1.8; color: #555;" data-i18n="message">
+                        Trong thời đại mà <strong>"từ thiện"</strong> đã trở thành từ nhạy cảm, 
+                        Tôi xin khẳng định: <strong style="color: #e74c3c;">HÃY NUÔI TÔI!</strong>
+                        <br><br>
+                        Tôi nghèo, tôi cần tiền, nhưng tôi KHÔNG MẤT LƯƠNG TÂM! 
+                        Mỗi đồng tiền các bạn gửi, tôi sẽ chi tiêu rõ ràng, 
+                        minh bạch như bụng đói của tôi vậy! 😭
+                        <br><br>
+                        <em>P/S: Tôi hứa sẽ không mua xe hơi bằng tiền donate. 
+                        Vì... tôi chưa có bằng lái! 🚗❌</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <p data-i18n="disclaimer">
+                    <strong>⚠️ DISCLAIMER:</strong> Đây là trang web mang tính chất <strong>HÀI HƯỚC</strong> 
+                    Mọi nội dung đều mang tính giải trí, không nhằm mục đích xúc phạm hay chỉ trích bất kỳ cá nhân/tổ chức nào.
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chỉ chạy animation khi không phải mobile
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+            // Thêm hiệu ứng khi scroll (chỉ trên desktop)
+            window.addEventListener('scroll', function() {
+                const cards = document.querySelectorAll('.feature-card');
+                cards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    if(cardPosition < screenPosition) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Khởi tạo animation cho cards (chỉ trên desktop)
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+        } else {
+            // Trên mobile, hiển thị tất cả ngay lập tức
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'none';
+            });
+        }
+    </script>
+    
+    <!-- Translation Script -->
+    <script src="./translations.js?v=1.8"></script>
+    
+    <!-- Donation Counter Script -->
+    <script>
+        // Tỷ giá chuyển đổi
+        const EXCHANGE_RATES = {
+            USD: 1,
+            VND: 25000,
+            EUR: 0.92,
+            GBP: 0.79,
+            DKK: 6.87,
+            JPY: 149,
+            CNY: 7.24,
+            RUB: 95
+        };
+        
+        // Mục tiêu tháng theo từng loại tiền
+        const MONTHLY_GOALS = {
+            USD: 400,
+            VND: 10000000,
+            EUR: 370,
+            GBP: 320,
+            DKK: 2750,
+            JPY: 59600,
+            CNY: 2900,
+            RUB: 38000
+        };
+        
+        // Dữ liệu donations (cập nhật thủ công từ Google Sheets)
+        const DONATIONS = [
+            { name: 'dave', amount: 5, date: '14/12/2025' },
+            { name: 'Tony', amount: 1, date: '13/12/2025' },
+            { name: 'Vuongot', amount: 1, date: '12/12/2025' },
+            { name: '@doigia', amount: 7.65, date: '11/12/2025' },
+            { name: 'Dong', amount: 1, date: '10/12/2025' },
+            { name: 'Scene', amount: 1, date: '10/12/2025' },
+            { name: 'NuoiEmtu2021', amount: 2, date: '10/12/2025' },
+            { name: 'Someone', amount: 1, date: '10/12/2025' },
+            { name: 'ngoisaongangtroi', amount: 1.43, date: '9/12/2025' },
+            { name: 'Haha', amount: 1.53, date: '9/12/2025' },
+            { name: 'nothing', amount: 1, date: '9/12/2025' }
+        ];
+        
+        // Biến global để lưu tổng USD
+        let TOTAL_USD = 0;
+        let TRANSACTION_COUNT = 0;
+        
+        // Chi tiêu (USD)
+        const TOTAL_SPENT_USD = 40; // $40 = 1,000,000 VND (với tỷ giá 25,000)
+        
+        // Dữ liệu chi tiêu
+        const EXPENSES = [
+            {
+                title: {
+                    vi: 'Món ăn cho tâm hồn',
+                    en: 'Food for the soul',
+                    fr: 'Nourriture pour l\'âme',
+                    da: 'Mad til sjælen',
+                    ja: '魂のための食べ物',
+                    zh: '灵魂的食物',
+                    ru: 'Еда для души'
+                },
+                image: './images/monan1.jpg',
+                link: 'https://voz.vn/t/keu-goi-giup-%C4%91o-mot-ban-bi-tai-nan-co-gia-canh-kho-khan.1182480/?fbclid=IwY2xjawOo5DBleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA80MDk5NjI2MjMwODU2MDkAAR6c8s8nn8HGVU-i-xT67qD-qmTvip9sp8xPDkHOjTCk19T1T4N-fm7KWWshhQ_aem_0j-Qt7wXRruOkt2axIcMiw'
+            }
+            // Thêm các chi tiêu khác ở đây
+        ];
+        
+        // Biến lưu vị trí scroll
+        let scrollPosition = 0;
+        
+        // Hàm mở popup chi tiêu
+        function openExpensePopup(index) {
+            const expense = EXPENSES[index];
+            const currentLang = localStorage.getItem('language') || 'vi';
+            
+            document.getElementById('popupImage').src = expense.image;
+            document.getElementById('popupTitle').textContent = expense.title[currentLang] || expense.title.vi;
+            document.getElementById('popupLink').href = expense.link;
+            
+            // Scroll trang về đầu
+            window.scrollTo(0, 0);
+            
+            // Lưu vị trí scroll = 0
+            scrollPosition = 0;
+            
+            const popup = document.getElementById('expensePopup');
+            popup.classList.add('show');
+            
+            // Reset scroll của popup về đầu
+            popup.scrollTop = 0;
+            
+            // Prevent body scroll when popup is open
+            document.body.style.position = 'fixed';
+            document.body.style.top = '0px';
+            document.body.style.width = '100%';
+        }
+        
+        // Hàm đóng popup chi tiêu
+        function closeExpensePopup(event) {
+            // Chỉ đóng nếu click vào backdrop hoặc nút close
+            if (!event || event.target.id === 'expensePopup' || event.target.className === 'expense-popup-close') {
+                const popup = document.getElementById('expensePopup');
+                popup.classList.remove('show');
+                
+                // Restore body scroll
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                window.scrollTo(0, scrollPosition);
+            }
+        }
+        
+        // Đóng popup khi nhấn ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const popup = document.getElementById('expensePopup');
+                if (popup.classList.contains('show')) {
+                    closeExpensePopup();
+                }
+            }
+        });
+        
+        // Hàm lấy currency theo language
+        function getCurrencyByLanguage(lang) {
+            const currencyMap = {
+                'vi': 'VND',
+                'en': 'USD',
+                'fr': 'EUR',
+                'da': 'DKK',
+                'ja': 'JPY',
+                'zh': 'CNY',
+                'ru': 'RUB'
+            };
+            return currencyMap[lang] || 'USD';
+        }
+        
+        // Hàm lấy symbol tiền tệ
+        function getCurrencySymbol(currency) {
+            const symbols = {
+                'USD': '$',
+                'VND': 'đ',
+                'EUR': '€',
+                'GBP': '£',
+                'DKK': 'kr',
+                'JPY': '¥',
+                'CNY': '¥',
+                'RUB': '₽'
+            };
+            return symbols[currency] || currency;
+        }
+        
+        // Hàm format số tiền theo locale
+        function formatMoney(amount, currency, lang) {
+            const localeMap = {
+                'vi': 'vi-VN',
+                'en': 'en-US',
+                'fr': 'fr-FR',
+                'da': 'da-DK',
+                'ja': 'ja-JP',
+                'zh': 'zh-CN',
+                'ru': 'ru-RU'
+            };
+            const locale = localeMap[lang] || 'en-US';
+            
+            // Làm tròn số cho đẹp
+            const roundedAmount = currency === 'VND' ? Math.round(amount) : Math.round(amount * 100) / 100;
+            
+            return new Intl.NumberFormat(locale).format(roundedAmount);
+        }
+        
+        // Hàm chuyển đổi USD sang currency khác
+        function convertCurrency(amountUSD, targetCurrency) {
+            return amountUSD * EXCHANGE_RATES[targetCurrency];
+        }
+        
+        // Hàm tính tổng từ dữ liệu
+        function calculateTotalFromData() {
+            let totalUSD = 0;
+            let count = DONATIONS.length;
+            
+            DONATIONS.forEach(donation => {
+                totalUSD += donation.amount;
+            });
+                        // Lưu vào biến global
+            TOTAL_USD = totalUSD;
+            TRANSACTION_COUNT = count;
+            
+            
+            // Cập nhật expense tracking (Thu/Chi/Còn lại)
+            const spentAmount = convertCurrency(TOTAL_SPENT_USD, currency);
+            const remainingAmount = totalAmount - spentAmount;
+            
+            const incomeAmountEl = document.getElementById('incomeAmount');
+            const spentAmountEl = document.getElementById('spentAmount');
+            const remainingAmountEl = document.getElementById('remainingAmount');
+            
+            if (incomeAmountEl) {
+                incomeAmountEl.textContent = formatMoney(totalAmount, currency, currentLang) + ' ' + currencySymbol;
+            }
+            
+            if (spentAmountEl) {
+                spentAmountEl.textContent = formatMoney(spentAmount, currency, currentLang) + ' ' + currencySymbol;
+            }
+            
+            if (remainingAmountEl) {
+                remainingAmountEl.textContent = formatMoney(remainingAmount, currency, currentLang) + ' ' + currencySymbol;
+            }
+            return {
+                totalUSD: totalUSD,
+                transactionCount: count
+            };
+        }
+        
+        // Hàm lấy dữ liệu donations
+        function fetchDonationData() {
+            try {
+                // Tính tổng từ dữ liệu có sẵn
+                const result = calculateTotalFromData();
+                
+                // Cập nhật UI với convert theo ngôn ngữ hiện tại
+                updateDonationUIWithLanguage();
+                
+            } catch (error) {
+                // Fallback
+                updateDonationUIWithLanguage();
+            }
+        }
+        
+        // Hàm cập nhật UI theo ngôn ngữ hiện tại
+        function updateDonationUIWithLanguage(lang) {
+            // Nếu không truyền lang, lấy từ localStorage
+            const currentLang = lang || localStorage.getItem('language') || 'vi';
+            const currency = getCurrencyByLanguage(currentLang);
+            const exchangeRate = EXCHANGE_RATES[currency] || EXCHANGE_RATES['VND'];
+            
+            const convertedAmount = TOTAL_USD * exchangeRate;
+            
+            // Force update lại UI với tham số đúng, truyền luôn currentLang
+            if (TOTAL_USD && TRANSACTION_COUNT !== undefined) {
+                updateDonationUI(TOTAL_USD, TRANSACTION_COUNT, currentLang);
+            } else {
+                // Nếu chưa có data, gọi lại fetchDonationData
+                fetchDonationData();
+            }
+        }
+        
+        // Hàm cập nhật UI
+        function updateDonationUI(totalUSD, transactionCount, lang) {
+            // Nếu không truyền lang, lấy từ localStorage
+            const currentLang = lang || localStorage.getItem('language') || 'vi';
+            const currency = getCurrencyByLanguage(currentLang);
+            const currencySymbol = getCurrencySymbol(currency);
+            
+            // Chuyển đổi sang currency hiện tại
+            const totalAmount = convertCurrency(totalUSD, currency);
+            
+            const totalAmountEl = document.getElementById('totalAmount');
+            const transactionCountEl = document.getElementById('transactionCount');
+            const progressFillEl = document.getElementById('progressFill');
+            const monthlyGoalEl = document.getElementById('monthlyGoal');
+            const currencySymbolEl = document.getElementById('currencySymbol');
+            
+            // Ẩn loading spinner
+            const spinner = totalAmountEl.querySelector('.loading-spinner');
+            const amountValue = totalAmountEl.querySelector('.amount-value');
+            
+            if (spinner) spinner.style.display = 'none';
+            if (amountValue) {
+                amountValue.textContent = formatMoney(totalAmount, currency, currentLang) + ' ' + currencySymbol;
+                amountValue.style.display = 'inline';
+            }
+            
+            // Cập nhật số lượt donate
+            if (transactionCountEl) {
+                transactionCountEl.textContent = transactionCount;
+            }
+            
+            // Cập nhật currency symbol
+            if (currencySymbolEl) {
+                currencySymbolEl.textContent = currencySymbol;
+            }
+            
+            // Cập nhật monthly goal
+            const monthlyGoal = MONTHLY_GOALS[currency];
+            if (monthlyGoalEl) {
+                monthlyGoalEl.textContent = formatMoney(monthlyGoal, currency, currentLang);
+            }
+            
+            // Cập nhật progress bar
+            const percentage = Math.min((totalAmount / monthlyGoal) * 100, 100);
+            
+            if (progressFillEl) {
+                setTimeout(() => {
+                    progressFillEl.style.width = percentage + '%';
+                }, 100);
+            }
+            
+            // Cập nhật expense tracking (Thu/Chi/Còn lại)
+            const spentAmount = convertCurrency(TOTAL_SPENT_USD, currency);
+            const remainingAmount = totalAmount - spentAmount;
+            
+            const incomeAmountEl = document.getElementById('incomeAmount');
+            const spentAmountEl = document.getElementById('spentAmount');
+            const remainingAmountEl = document.getElementById('remainingAmount');
+            
+            if (incomeAmountEl) {
+                incomeAmountEl.textContent = formatMoney(totalAmount, currency, currentLang) + ' ' + currencySymbol;
+            }
+            
+            if (spentAmountEl) {
+                spentAmountEl.textContent = formatMoney(spentAmount, currency, currentLang) + ' ' + currencySymbol;
+            }
+            
+            if (remainingAmountEl) {
+                remainingAmountEl.textContent = formatMoney(remainingAmount, currency, currentLang) + ' ' + currencySymbol;
+            }
+        }
+        
+        // Gọi hàm khi trang load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Đợi translations.js set language xong (delay 100ms)
+            setTimeout(() => {
+                fetchDonationData();
+            }, 100);
+            // Refresh mỗi 5 phút
+            setInterval(fetchDonationData, 5 * 60 * 1000);
+        });
+        
+        // Export hàm để gọi từ setLanguage
+        window.updateDonationUIWithLanguage = updateDonationUIWithLanguage;
+    </script>
+</body>
+</html>
